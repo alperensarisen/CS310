@@ -29,8 +29,8 @@ void main(){
     print(name);
   }
   names.forEach((name) => print(name));
-  Set<String> set_names = {"Ali", "Ahmet", "Arda", "Ali"}; //? set ignores repeated elements
-  print(set_names);
+  //Set<String> set_names = {"Ali", "Ahmet", "Arda", "Ali"}; //? set ignores repeated elements
+  //print(set_names);
 }
 void greet(String name){
   print("Hello! $name");
