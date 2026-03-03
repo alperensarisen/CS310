@@ -1,3 +1,4 @@
+/*
 //Named function
 void sayHello(String name) => print("Hello $name!");
 //Anonymous function
@@ -32,4 +33,19 @@ void main(){
     "alp" : 49
   };
   students.forEach(printResult);
+}
+*/
+class Post{
+  String username;
+  String content;
+  Post(this.username, this.content);
+  @override
+  String toString() => "$username: $content";
+}
+void main() {
+  var posts = [
+    Post("Alice", "Loving Dart!"),
+    Post("Bob", "Hello world!")
+  ];
+  posts.forEach((post) => print(post));
 }
