@@ -58,6 +58,7 @@ class MyApp extends StatelessWidget {
       ),
     );*/
     //! SECOND PRACTICE
+    /*
     MaterialApp(
       home:Scaffold(
         appBar: AppBar(
@@ -84,6 +85,30 @@ class MyApp extends StatelessWidget {
         ]
         ),
       )
+    );
+    */
+    //! EXERCISE
+    //TODO: Add an AppBar with title "My Profile"
+    //TODO: Add a body with centered text showing your name
+    //TODO: Adda a FloatingActionButton with a star icon 
+    MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("My App"),
+          backgroundColor: Colors.deepPurple
+          ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Alperen", style: TextStyle(fontSize: 24),)
+            ],
+        ),
+        ),
+        floatingActionButton: FloatingActionButton(onPressed: (){},
+        child: Icon(Icons.star),
+        ),
+      ),
     );
   }
 }
