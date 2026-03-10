@@ -28,7 +28,7 @@
 
 import 'package:flutter/material.dart';
 void main(){
-  runApp(const MyApp());
+  runApp(const MaterialApp(home: MyApp()));
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -88,9 +88,10 @@ class MyApp extends StatelessWidget {
     );
     */
     //! EXERCISE
-    //TODO: Add an AppBar with title "My Profile"
+    //TODO: Add an AppBar with title "My App"
     //TODO: Add a body with centered text showing your name
     //TODO: Adda a FloatingActionButton with a star icon 
+    /*
     MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -109,6 +110,44 @@ class MyApp extends StatelessWidget {
         child: Icon(Icons.star),
         ),
       ),
+    );
+    */
+    Scaffold(
+      appBar: AppBar(
+        title: Text("My Profile"), 
+        backgroundColor: Colors.blue,
+        ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 250,
+              height: 150,
+              margin: EdgeInsets.all(16),
+              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              decoration: BoxDecoration(
+                color: Colors.blue.shade50,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.blue, width: 2),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.blue.withOpacity(0.2),
+                    blurRadius: 10,
+                    offset: Offset(0, 4),
+                  )
+                ]
+              ),
+              child: Center(
+                child: Text("Styled Box!",
+                style: TextStyle(fontSize: 18,
+                fontWeight: FontWeight.bold)
+                ),
+              ),
+            )
+          ],
+        ),
+      )
     );
   }
 }
