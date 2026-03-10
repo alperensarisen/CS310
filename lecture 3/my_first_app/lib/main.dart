@@ -34,7 +34,9 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return 
+    //! FIRST PARCTICE
+    /*MaterialApp(
       home: Scaffold(
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,    // Contorls vertical alignment (e.g, start, center, spaceBetween)
@@ -54,6 +56,34 @@ class MyApp extends StatelessWidget {
           ],
         )
       ),
+    );*/
+    //! SECOND PRACTICE
+    MaterialApp(
+      home:Scaffold(
+        appBar: AppBar(
+          title: Text("My App"),
+          backgroundColor: Colors.deepPurple,
+        ),
+        body:Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Hello!", style: TextStyle(fontSize: 24),),
+              SizedBox(height: 16,),
+              ElevatedButton(onPressed: (){}, child: Text('Tap me')),
+            ],
+          )
+        ),
+        floatingActionButton: FloatingActionButton(onPressed: (){ print("FAB Pressed!");},
+        child: Icon(Icons.add)
+        ),
+        bottomNavigationBar: BottomNavigationBar(items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ]
+        ),
+      )
     );
   }
 }
