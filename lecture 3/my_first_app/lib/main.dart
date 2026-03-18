@@ -30,6 +30,7 @@ class StateDemoScreen extends StatefulWidget {
 class _StateDemoScreenState extends State<StateDemoScreen> {
   int _count = 0;
   void _increment(){setState(() {_count++;});}
+  void _decrement(){setState(() {_count--;});}
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -43,9 +44,19 @@ class _StateDemoScreenState extends State<StateDemoScreen> {
             child: Text("Count $_count",
             style: const TextStyle(fontSize: 35))
           ),
-          floatingActionButton: FloatingActionButton(onPressed: _increment,
-          child: const Icon(Icons.add)
+          floatingActionButton: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(padding: const EdgeInsets.only(left: 30),
+              child: FloatingActionButton(onPressed: _decrement, 
+              child: Icon(Icons.remove),),
+              ),
+              FloatingActionButton(onPressed: _increment,
+              child: const Icon(Icons.add)
+              ),
+            ],
           ),
+          
       )
     );
   }
