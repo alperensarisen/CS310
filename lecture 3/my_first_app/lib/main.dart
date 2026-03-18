@@ -1,112 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-void main() => runApp(const MaterialApp(home: ScoreBoard()));
-class ScoreBoard extends StatefulWidget {
-  const ScoreBoard({super.key});
+void main() =>runApp(const MaterialApp(home: StateDemoScreen()));
+/*
+class My_App extends StatelessWidget {
+  const My_App({super.key});
 
-  @override
-  State<ScoreBoard> createState() => _ScoreBoardState();
-}
-
-class _ScoreBoardState extends State<ScoreBoard> {
-  int score_1 = 0; 
-  int score_2 = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-    body: Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-              margin: EdgeInsets.all(16),
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              decoration: BoxDecoration(
-                color: Colors.blue.shade50,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: Colors.blue, width: 2),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.blue.withOpacity(0.2),
-                    blurRadius: 10,
-                    offset: Offset(0, 4),
-                  )
-                ]
-              ),
-            child: Column(  
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text("$score_1", style: TextStyle(fontSize: 50, color: Colors.blue, fontWeight: FontWeight.bold),),
-                SizedBox(height: 5,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: (){setState(() {score_1++;});}, 
-                      style: ElevatedButton.styleFrom(backgroundColor: Colors.blue.shade400, foregroundColor: Colors.white),
-                      child: Icon(Icons.plus_one)
-                    ),
-                    SizedBox(width: 10,),
-                    ElevatedButton(
-                      onPressed: (){setState(() {score_1--;});}, 
-                      style: ElevatedButton.styleFrom(backgroundColor: Colors.blue.shade400, foregroundColor: Colors.white),
-                      child: Icon(Icons.remove)
-                    )
-                  ],
-                )
-                
-                ],
-            ),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("State Demo", 
+            style:TextStyle(fontSize: 20,
+            fontWeight: FontWeight.bold)),
           ),
-         Container(
-              margin: EdgeInsets.all(16),
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              decoration: BoxDecoration(
-                color: Colors.red.shade50,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: Colors.red, width: 2),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.red.withOpacity(0.2),
-                    blurRadius: 10,
-                    offset: Offset(0, 4),
-                  )
-                ]
-              ),
-            child: Column(  
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                
-                Text("$score_2", style: TextStyle(fontSize: 50, color: Colors.red, fontWeight: FontWeight.bold),),
-                SizedBox(height: 5,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: (){setState(() {score_2++;});}, 
-                      style: ElevatedButton.styleFrom(backgroundColor: Colors.red.shade400, foregroundColor: Colors.white),
-                      child: Icon(Icons.plus_one),
-                     
-                    ),
-                    SizedBox(width: 10,),
-                    ElevatedButton(
-                      onPressed: (){setState(() {score_2--;});}, 
-                      style: ElevatedButton.styleFrom(backgroundColor: Colors.red.shade400, foregroundColor: Colors.white),
-                      child: Icon(Icons.remove),
-                    )
-                  ],
-                )
-                
-                ],
-            ),
-          )
+          body: Center(
+            child: Text("Hello Flutter")
+          ),
+      )
+    );
+  }
+} */
+class StateDemoScreen extends StatefulWidget {
+  const StateDemoScreen({super.key});
 
-        ],
-      ),
-    )
+  @override
+  State<StateDemoScreen> createState() => _StateDemoScreenState();
+}
+
+class _StateDemoScreenState extends State<StateDemoScreen> {
+  int _count = 0;
+  void _increment(){setState(() {_count++;});}
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("State Demo", 
+            style:TextStyle(fontSize: 20,
+            fontWeight: FontWeight.bold)),
+          ),
+          body: Center(
+            child: Text("Count $_count",
+            style: const TextStyle(fontSize: 35))
+          ),
+          floatingActionButton: FloatingActionButton(onPressed: _increment,
+          child: const Icon(Icons.add)
+          ),
+      )
     );
   }
 }
