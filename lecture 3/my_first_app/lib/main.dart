@@ -1,63 +1,62 @@
 import 'package:flutter/material.dart';
-void main() =>runApp(const MaterialApp(home: StateDemoScreen()));
-/*
-class My_App extends StatelessWidget {
-  const My_App({super.key});
+void main() => runApp(const MaterialApp(home: LikeDislikeCounter(),));
+class LikeDislikeCounter extends StatefulWidget {
+  const LikeDislikeCounter({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("State Demo", 
-            style:TextStyle(fontSize: 20,
-            fontWeight: FontWeight.bold)),
-          ),
-          body: Center(
-            child: Text("Hello Flutter")
-          ),
-      )
-    );
-  }
-} */
-class StateDemoScreen extends StatefulWidget {
-  const StateDemoScreen({super.key});
-
-  @override
-  State<StateDemoScreen> createState() => _StateDemoScreenState();
+  State<LikeDislikeCounter> createState() => _LikeDislikeCounterState();
 }
 
-class _StateDemoScreenState extends State<StateDemoScreen> {
-  int _count = 0;
-  void _increment(){setState(() {_count++;});}
-  void _decrement(){setState(() {_count--;});}
+class _LikeDislikeCounterState extends State<LikeDislikeCounter> {
+  int likes = 0;
+  int dislikes = 0;
+  void resetCounts(){
+    setState(() {
+      likes = 0;
+      dislikes = 0;
+    });
+  }
+  void like(){
+    setState(() {
+      likes++;
+    });
+  }
+  void dislike(){
+    setState(() {
+      dislikes++;
+    });
+  }
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("State Demo", 
-            style:TextStyle(fontSize: 20,
-            fontWeight: FontWeight.bold)),
+    return Scaffold(
+      appBar: AppBar(title: Text("Like Dislike Counter App" , style: TextStyle(fontWeight: FontWeight.bold),),),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text("How do you feel about this post",
+            style: TextStyle(color: Colors.green),
+            ),
+            Text("👍 Likes: $likes"),
+            Text("👎 Dislikes: $dislikes"),
+            ElevatedButton(onPressed: resetCounts, 
+            child: Text("Reset Counts", style: TextStyle(color: Colors.green),))
+          ],
+        ),
+      ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(padding: const EdgeInsets.only(left: 30,right: 30),
+          child: FloatingActionButton(onPressed: dislike,backgroundColor: Colors.red, child: Text("👎")), 
           ),
-          body: Center(
-            child: Text("Count $_count",
-            style: const TextStyle(fontSize: 35))
-          ),
-          floatingActionButton: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(padding: const EdgeInsets.only(left: 30),
-              child: FloatingActionButton(onPressed: _decrement, 
-              child: Icon(Icons.remove),),
-              ),
-              FloatingActionButton(onPressed: _increment,
-              child: const Icon(Icons.add)
-              ),
-            ],
-          ),
-          
-      )
+          FloatingActionButton(onPressed: like,
+          backgroundColor: Colors.green,
+          child: Text("👍"),)
+        ],
+      ),
+      
     );
   }
 }
