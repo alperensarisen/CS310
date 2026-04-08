@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screen1.dart';
 void main() => runApp(MaterialApp(theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal)),home: Screen2(),));
 class Screen2 extends StatefulWidget {
   const Screen2({super.key});
@@ -29,7 +30,7 @@ class _Screen2State extends State<Screen2> {
                 ElevatedButton(onPressed: dec, child: Icon(Icons.remove))
               ],
             ),
-            
+            ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/screen1');}, child: Text("Go page 1"))
           ],
         ),
       ),

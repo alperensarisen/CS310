@@ -8,7 +8,12 @@ class Screen1 extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text("Screen 1"), centerTitle: true,),
       body: Center(
-        child: Text("SCREEN 1", style: TextStyle(color: Colors.green),),
+        child: Column(
+          children: [
+            Text("SCREEN 1", style: TextStyle(color: Colors.green),),
+            ElevatedButton(onPressed: (){Navigator.popUntil(context, ModalRoute.withName('/'));}, child: Icon(Icons.home))
+          ],
+        ),
       ),
     );
   }
