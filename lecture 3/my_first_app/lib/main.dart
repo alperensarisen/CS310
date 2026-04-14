@@ -1,87 +1,117 @@
-
-
 import 'package:flutter/material.dart';
-void main() => runApp(MaterialApp(home: CoffeOrder()));
-class CoffeOrder extends StatefulWidget {
-  const CoffeOrder({super.key});
- 
-  @override
-  State<CoffeOrder> createState() => _CoffeOrderState();
-}
+void main() => runApp(MaterialApp(home: homePage()));
+class homePage extends StatefulWidget {
+  const homePage({super.key});
 
-class _CoffeOrderState extends State<CoffeOrder> {
+  @override
+  State<homePage> createState() => _homePageState();
+}
+class Student{
+  
+  final String name;
+  final String id;
+  Student({required this.name, required this.id});
+}
+class _homePageState extends State<homePage> {
+  List<Student> students =[
+    Student(name: "Alperen", id: "1111"),
+    Student(name: "Ataberk", id: "2222")
+  ];
   final _formkey = GlobalKey<FormState>();
-   String name = "";
-  String drink ="";
-  String phone ="";
+  String s_name = "";
+  String s_id = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Coffe Order", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),backgroundColor: Colors.brown,),
       body: Center(
-        child: Form(
-          key: _formkey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: "Your Name",
-                  border: OutlineInputBorder()
-                ),
-                validator: (value) {
-                  if(value == null || value.isEmpty)
-                    return "Name is required";
-                  return null;
-                },
-                onSaved: (value) => name = value!,
-              ),
-              SizedBox(height: 10,),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: "Drink",
-                  border: OutlineInputBorder()
-                ),
-                validator: (value) {
-                  String drinkName = value?.toLowerCase().trim() ?? "";
-
-                  if (drinkName != "latte" && drinkName != "iced americano") {
-                    return "There is no such a drink";
-                  }
-                  return null;
-                },
-                onSaved: (value) => drink = value!,
-              ),
-              SizedBox(height: 10,),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: "Phone (+90)",
-                  border: OutlineInputBorder()
-                ),
-                validator: (value) {
-                  if(value!.length <= 11 || value.isEmpty)
-                    return "Please enter valid phone 0xxx xxx xx xx";
-                  return null;
-                },
-                onSaved: (value) => phone = value!,
-              ),
-              SizedBox(height: 10,),
-              ElevatedButton(onPressed: (){
-                if(_formkey.currentState!.validate()){
-                  _formkey.currentState!.save();
-                  ScaffoldMessenger.of(context).showSnackBar(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Form(
+              key: _formkey,
+              child: Column(
+                children: [
+                  TextFormField(
+                    decoration: InputDecoration(
+                      labelText: "Student Name",
+                      border: OutlineInputBorder() 
+                    ),
+                    validator: (value) {
+                      if(value == null || value!.isEmpty)
+                        return "Enter a valid name";
+                      return null;
+                    },
+                    onSaved: (value) => s_name = value!,
+                  ),
+                  SizedBox(height: 10,),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      labelText: "Student ID",
+                      border: OutlineInputBorder() 
+                    ),
+                    validator: (value) {
+                      if(value == null || value!.length != 4)
+                        return "Enter a valid ID (xxxx)";
+                      return null;
+                    },
+                    onSaved: (value) => s_id = value!,
+                  ),
+                  ElevatedButton(onPressed: (){
+                    if(_formkey.currentState!.validate()){
+                      _formkey.currentState!.save();
+                      setState(() {
+                        students = [...students, Student(name: s_name, id: s_id)];
+                      });
+                      ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: 
-                        Text('Hello $name, your $drink order is being prepared!'),
+                        Text('Student $s_name saved with id $s_id'),
                         backgroundColor: Colors.teal,)
                       );
-                }
-              }, 
-              child: Text("Order")
-              )
-            ],
-          )),
+                    }
+                  }, child: Text("Save")),
+                  ElevatedButton(onPressed: (){
+
+                    
+                  }, child: Text("List Students"))
+                  ],
+              )),
+              SizedBox(height: 10,),
+              Expanded(child: ListView.builder(
+                      itemCount: students.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final s = students[index];
+                        
+                        return ListTile(
+                          leading: Icon(Icons.person),
+                          title: Text(s.name),
+                          subtitle: Text(s.id),
+                          trailing: IconButton(onPressed: (){setState(() {
+                            students = students.where((s) => students[index]!=s).toList();
+                          });}, icon: Icon(Icons.delete)),
+                        );
+                      },
+                    ))
+          ],
+        )
       ),
     );
   }
 }
+/*
+ListView.builder(
+          itemCount: students.length,
+          itemBuilder: (BuildContext context, int index) {
+            final s = students[index];
+            return InkWell(
+              onTap: () {
+                print("Hello, ${s.name}");
+              },
+              child: ListTile(
+                leading: Icon(Icons.person),
+                title: Text(s.name),
+                subtitle: Text(s.id),
+              ),
+            );
+          },
+        ),
+ */
