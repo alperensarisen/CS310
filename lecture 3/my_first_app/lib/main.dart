@@ -1,30 +1,63 @@
 import 'package:flutter/material.dart';
-import 'pages/screen1.dart';
-import 'pages/screen2.dart';
-void main() => runApp(MaterialApp(
-  routes: {
-        '/': (context) => const MainPage(),
-        '/screen1': (context) => const Screen1(),
-        '/screen2': (context) => const Screen2(),
-      },));
-class MainPage extends StatelessWidget {
-  const MainPage({super.key});
+void main() =>runApp(const MaterialApp(home: StateDemoScreen()));
+/*
+class My_App extends StatelessWidget {
+  const My_App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Home Page"),centerTitle: true, backgroundColor: Colors.teal,),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ElevatedButton(onPressed: () {Navigator.pushNamed(context, '/screen1');}, child: Text("Go to screen 1")),
-            SizedBox(height: 10,),
-            ElevatedButton(onPressed: () {Navigator.pushNamed(context, '/screen2');}, child: Text("Go to screen 2")),
-          ],
-        ),
-      ),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("State Demo", 
+            style:TextStyle(fontSize: 20,
+            fontWeight: FontWeight.bold)),
+          ),
+          body: Center(
+            child: Text("Hello Flutter")
+          ),
+      )
+    );
+  }
+} */
+class StateDemoScreen extends StatefulWidget {
+  const StateDemoScreen({super.key});
+
+  @override
+  State<StateDemoScreen> createState() => _StateDemoScreenState();
+}
+
+class _StateDemoScreenState extends State<StateDemoScreen> {
+  int _count = 0;
+  void _increment(){setState(() {_count++;});}
+  void _decrement(){setState(() {_count--;});}
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("State Demo", 
+            style:TextStyle(fontSize: 20,
+            fontWeight: FontWeight.bold)),
+          ),
+          body: Center(
+            child: Text("Count $_count",
+            style: const TextStyle(fontSize: 35))
+          ),
+          floatingActionButton: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(padding: const EdgeInsets.only(left: 30),
+              child: FloatingActionButton(onPressed: _decrement, 
+              child: Icon(Icons.remove),),
+              ),
+              FloatingActionButton(onPressed: _increment,
+              child: const Icon(Icons.add)
+              ),
+            ],
+          ),
+          
+      )
     );
   }
 }
