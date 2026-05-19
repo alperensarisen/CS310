@@ -38,7 +38,7 @@ class _homePageState extends State<homePage> {
                       border: OutlineInputBorder() 
                     ),
                     validator: (value) {
-                      if(value == null || value!.isEmpty){
+                      if(value == null || value.isEmpty){
                         return "Enter a valid name";
                       }
                         
@@ -53,7 +53,7 @@ class _homePageState extends State<homePage> {
                       border: OutlineInputBorder() 
                     ),
                     validator: (value) {
-                      if(value == null || value!.length != 4) {
+                      if(value == null || value.length != 4) {
                         return "Enter a valid ID (xxxx)";
                       }
                       return null;
