@@ -18,6 +18,7 @@ class _homePageState extends State<homePage> {
     Student(name: "Ataberk", id: "2222")
   ];
   final _formkey = GlobalKey<FormState>();
+  // ignore: non_constant_identifier_names
   String s_name = "";
   String s_id = "";
   @override
@@ -37,8 +38,10 @@ class _homePageState extends State<homePage> {
                       border: OutlineInputBorder() 
                     ),
                     validator: (value) {
-                      if(value == null || value!.isEmpty)
+                      if(value == null || value!.isEmpty){
                         return "Enter a valid name";
+                      }
+                        
                       return null;
                     },
                     onSaved: (value) => s_name = value!,
@@ -50,8 +53,9 @@ class _homePageState extends State<homePage> {
                       border: OutlineInputBorder() 
                     ),
                     validator: (value) {
-                      if(value == null || value!.length != 4)
+                      if(value == null || value!.length != 4) {
                         return "Enter a valid ID (xxxx)";
+                      }
                       return null;
                     },
                     onSaved: (value) => s_id = value!,
