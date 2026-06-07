@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_first_app/practice3.dart';
+//import 'package:my_first_app/practice3.dart';
 import 'package:provider/provider.dart';
 class CounterProvider extends ChangeNotifier{
   int _counter = 0;
