@@ -1,6 +1,6 @@
 import 'dart:convert'; //! to decode json
 import 'package:http/http.dart' as http; //! for http requests
-void main() async{
+/*void main() async{
   print("data is fetching...");
   final url = Uri.https(
     'api.escuelajs.co',
@@ -28,4 +28,15 @@ void main() async{
   }catch(e){
     print(e);
   }
+} */
+void main() async{
+  final httpPackageUrl = Uri.https('dart.dev','/f/packages/http.json');
+  final httpPackageInfo = await http.read(httpPackageUrl);
+  print(httpPackageInfo);
+  final response = await http.get(httpPackageUrl);
+  if(response.statusCode != 200){
+    print("failed!");
+    return;
+  } 
+  print(response.body);
 }
